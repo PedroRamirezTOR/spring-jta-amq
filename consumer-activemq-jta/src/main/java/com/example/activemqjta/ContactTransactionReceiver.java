@@ -11,13 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class ContactTransactionReceiver {
 
-	private int mensajesConsumer2 = 0;
-
-//	@Transactional(rollbackFor = Exception.class)
-	@JmsListener(destination = "QueuePrueba")
+	@JmsListener(destination = "TestQueue")
 	public void receiveMessageSendMessage(Message message) throws Exception {
-		mensajesConsumer2++;
-		System.out.println("Mensaje " + mensajesConsumer2 + ":" + ((TextMessage) message).getText());
+		System.out.println("Received: " + ((TextMessage) message).getText());
 	}
 
 }
